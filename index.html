@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MMCOE Digital Campus | Student Profile Portal</title>
+
+    <!-- Google Fonts: Poppins (Official MMCOE Typography) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/static/style.css?v=20261005_3">
+
+    <script>
+        function showRegistrationForm(updateUrl) {
+            var loginForm = document.getElementById("loginForm");
+            var registerForm = document.getElementById("registerForm");
+            var toggleToRegister = document.getElementById("toggleToRegister");
+            var toggleToLogin = document.getElementById("toggleToLogin");
+            var demoSection = document.getElementById("demoSection");
+            var authTitle = document.getElementById("authTitle");
+            var authSubtitle = document.getElementById("authSubtitle");
+            var authBadgeText = document.getElementById("authBadgeText");
+            var errorMessage = document.getElementById("errorMessage");
+            var regErrorMessage = document.getElementById("regErrorMessage");
+            var regSuccessMessage = document.getElementById("regSuccessMessage");
+
+            if (loginForm) loginForm.classList.add("hidden");
+            if (registerForm) registerForm.classList.remove("hidden");
+            if (toggleToRegister) toggleToRegister.classList.add("hidden");
+            if (toggleToLogin) toggleToLogin.classList.remove("hidden");
+            if (demoSection) demoSection.classList.add("hidden");
+            if (authTitle) authTitle.innerHTML = 'Create Account<span>.</span>';
+            if (authSubtitle) authSubtitle.textContent = 'Register with your approved MMCOE college email to access the portal.';
+            if (authBadgeText) authBadgeText.textContent = 'STUDENT REGISTRATION';
+            if (errorMessage) { errorMessage.style.display = "none"; errorMessage.textContent = ""; }
+            if (regErrorMessage) { regErrorMessage.style.display = "none"; regErrorMessage.textContent = ""; }
+            if (regSuccessMessage) { regSuccessMessage.style.display = "none"; regSuccessMessage.textContent = ""; }
+
+            if (updateUrl && typeof window !== 'undefined' && window.history && window.location.pathname !== '/register/') {
+                window.history.pushState({ page: 'register' }, '', '/register/');
+            }
+        }
+
+        function showLoginForm(updateUrl) {
+            var loginForm = document.getElementById("loginForm");
+            var registerForm = document.getElementById("registerForm");
+            var toggleToRegister = document.getElementById("toggleToRegister");
+            var toggleToLogin = document.getElementById("toggleToLogin");
+            var demoSection = document.getElementById("demoSection");
+            var authTitle = document.getElementById("authTitle");
+            var authSubtitle = document.getElementById("authSubtitle");
+            var authBadgeText = document.getElementById("authBadgeText");
+            var errorMessage = document.getElementById("errorMessage");
+            var regErrorMessage = document.getElementById("regErrorMessage");
+            var regSuccessMessage = document.getElementById("regSuccessMessage");
+
+            if (loginForm) loginForm.classList.remove("hidden");
+            if (registerForm) registerForm.classList.add("hidden");
+            if (toggleToRegister) toggleToRegister.classList.remove("hidden");
+            if (toggleToLogin) toggleToLogin.classList.add("hidden");
+            if (demoSection) demoSection.classList.remove("hidden");
+            if (authTitle) authTitle.innerHTML = 'Portal Sign In<span>.</span>';
+            if (authSubtitle) authSubtitle.textContent = 'Enter your Student ID or official email address to access your profile.';
+            if (authBadgeText) authBadgeText.textContent = 'UNIFIED AUTHENTICATION';
+            if (errorMessage) { errorMessage.style.display = "none"; errorMessage.textContent = ""; }
+            if (regErrorMessage) { regErrorMessage.style.display = "none"; regErrorMessage.textContent = ""; }
+            if (regSuccessMessage) { regSuccessMessage.style.display = "none"; regSuccessMessage.textContent = ""; }
+
+            if (updateUrl && typeof window !== 'undefined' && window.history && (window.location.pathname !== '/' && window.location.pathname !== '/login/')) {
+                window.history.pushState({ page: 'login' }, '', '/');
+            }
+        }
+
+        function syncAuthViewWithUrl() {
+            if (typeof window === 'undefined' || !window.location) return;
+            var path = window.location.pathname.toLowerCase();
+            var hash = window.location.hash.toLowerCase();
+            if (path.indexOf('register') !== -1 || path.indexOf('create-account') !== -1 || hash === '#register') {
+                showRegistrationForm(false);
+            } else {
+                showLoginForm(false);
+            }
+        }
+
+        window.showRegistrationForm = showRegistrationForm;
+        window.showLoginForm = showLoginForm;
+        window.syncAuthViewWithUrl = syncAuthViewWithUrl;
+        window.addEventListener('popstate', syncAuthViewWithUrl);
+    </script>
+</head>
+
+<body>
+
+    <!-- ============================================================== -->
+    <!-- 1. LOGIN PAGE (MMCOE Institutional Visual Language)            -->
+    <!-- ============================================================== -->
+    <section id="loginPage" class="login-page">
+
+        <!-- Institutional Left Hero Column -->
+        <div class="login-left">
+            <div class="institutional-strip"></div>
+
+            <header class="login-brand">
+                <div class="crest-seal">
+                    <span class="crest-icon">🏛️</span>
+                </div>
+                <div>
+                    <h3 class="portal-heading">Digital Campus</h3>
+                    <span class="portal-subheading">MMCOE STUDENT PROFILE PORTAL</span>
+                </div>
+            </header>
+
+            <div class="hero-content">
+                <div class="eyebrow-badge">
+                    <span class="dot"></span> MARATHWADA MITRA MANDAL
+                </div>
+
+                <h1 class="hero-title">
+                    Empowering Minds.<br>
+                    Excellence in Engineering.
+                </h1>
+
+                <p class="hero-desc">
+                    Access your unified academic ecosystem. Track course progress,
+                    explore research opportunities, stay updated with campus notices, and connect with faculty.
+                </p>
+
+                <div class="hero-highlights">
+                    <div class="highlight-item">
+                        <span class="highlight-icon">✓</span>
+                        <span>Single Sign-On for Students & Faculty</span>
+                    </div>
+                    <div class="highlight-item">
+                        <span class="highlight-icon">✓</span>
+                        <span>Role-Based Secure Authorization</span>
+                    </div>
+                    <div class="highlight-item">
+                        <span class="highlight-icon">✓</span>
+                        <span>InterX Internships & Campus Services</span>
+                    </div>
+                </div>
+
+                <div class="hero-footer-motto">
+                    <span>"Welfare of All" • 'Yethe Bahutanche Hit'</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Login Form Right Column -->
+        <div class="login-right">
+            <div class="login-card">
+
+                <div class="mobile-brand-crest">
+                    <div class="crest-seal">
+                        <span class="crest-icon">🏛️</span>
+                    </div>
+                    <div>
+                        <h3>MMCOE Digital Campus</h3>
+                        <span>STUDENT PROFILE PORTAL</span>
+                    </div>
+                </div>
+
+                <div class="card-header-badge">
+                    <span class="badge-accent" id="authBadgeText">UNIFIED AUTHENTICATION</span>
+                </div>
+
+                <h2 class="card-title" id="authTitle">Portal Sign In<span>.</span></h2>
+                <p class="card-subtitle" id="authSubtitle">
+                    Enter your Student ID or official email address to access your profile.
+                </p>
+
+                <!-- Authentication Form -->
+                <form id="loginForm" class="auth-form" novalidate>
+
+                    <div class="form-group">
+                        <label for="email">Student ID / Email Address</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">👤</span>
+                            <input 
+                                type="text" 
+                                id="email" 
+                                name="username" 
+                                placeholder="Enter your email or username / ID" 
+                                required 
+                                autocomplete="username"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="label-row">
+                            <label for="password">Password</label>
+                        </div>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔒</span>
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                placeholder="Enter your password" 
+                                required 
+                                autocomplete="current-password"
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Error Alert Box -->
+                    <div id="errorMessage" class="error-banner" role="alert" aria-live="polite"></div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" id="loginSubmitBtn" class="btn btn-primary btn-block">
+                        <span id="loginBtnText">Sign In to Portal</span>
+                        <span id="loginBtnArrow" class="btn-arrow">→</span>
+                    </button>
+
+                </form>
+
+                <!-- Registration Form -->
+                <form id="registerForm" class="auth-form hidden" novalidate>
+
+                    <div class="form-group">
+                        <label for="regFullName">Full Name</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">👤</span>
+                            <input 
+                                type="text" 
+                                id="regFullName" 
+                                name="full_name" 
+                                placeholder="Enter your full name" 
+                                required 
+                                autocomplete="name"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="regEmail">College Email</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">✉️</span>
+                            <input 
+                                type="email" 
+                                id="regEmail" 
+                                name="email" 
+                                placeholder="e.g. neha@mmcoe.edu.in" 
+                                required 
+                                autocomplete="email"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="label-row">
+                            <label for="regPassword">Password</label>
+                        </div>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔒</span>
+                            <input 
+                                type="password" 
+                                id="regPassword" 
+                                name="password" 
+                                placeholder="Create a password" 
+                                required 
+                                autocomplete="new-password"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="label-row">
+                            <label for="regPasswordConfirm">Confirm Password</label>
+                        </div>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔒</span>
+                            <input 
+                                type="password" 
+                                id="regPasswordConfirm" 
+                                name="password_confirm" 
+                                placeholder="Confirm your password" 
+                                required 
+                                autocomplete="new-password"
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Feedback Alert Boxes -->
+                    <div id="regErrorMessage" class="error-banner" role="alert" aria-live="polite"></div>
+                    <div id="regSuccessMessage" class="success-banner" role="status" aria-live="polite"></div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" id="regSubmitBtn" class="btn btn-primary btn-block">
+                        <span id="regBtnText">Create Account</span>
+                        <span id="regBtnArrow" class="btn-arrow">→</span>
+                    </button>
+
+                </form>
+
+                <!-- Auth Mode Switcher -->
+                <div class="auth-toggle-row">
+                    <p id="toggleToRegister" class="auth-toggle-text">Don't have an account? <a href="/register/" id="showRegisterLink" onclick="showRegistrationForm(true); return false;">Create Account</a></p>
+                    <p id="toggleToLogin" class="auth-toggle-text hidden">Already have an account? <a href="/" id="showLoginLink" onclick="showLoginForm(true); return false;">Sign In</a></p>
+                </div>
+                <script>
+                    syncAuthViewWithUrl();
+                </script>
+
+                <!-- Developer Quick Demo Login -->
+                <div id="demoSection" class="demo-section">
+                    <div class="divider-line">
+                        <span>DEMO ACCOUNTS</span>
+                    </div>
+
+                    <div class="demo-buttons">
+                        <button type="button" id="demoAdminBtn" class="btn btn-outline" title="Login as Admin">
+                            <span class="btn-role-tag admin">ADMIN</span> Admin
+                        </button>
+                        <button type="button" id="demoStudentABtn" class="btn btn-outline" title="Login as Student A">
+                            <span class="btn-role-tag">STUDENT</span> Student A
+                        </button>
+                        <button type="button" id="demoStudentBBtn" class="btn btn-outline" title="Login as Student B">
+                            <span class="btn-role-tag">STUDENT</span> Student B
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- ============================================================== -->
+    <!-- 2. MAIN DASHBOARD (MMCOE Institutional Portal Layout)           -->
+    <!-- ============================================================== -->
+    <section id="dashboard" class="dashboard hidden">
+
+        <!-- Mobile Drawer Backdrop Overlay -->
+        <div id="mobileDrawerOverlay" class="mobile-drawer-overlay" onclick="closeMobileMenu(event)" aria-hidden="true"></div>
+
+        <!-- SIDEBAR NAVIGATION (Desktop Sidebar / Mobile Drawer) -->
+        <aside class="sidebar" id="sidebarNav">
+
+            <div class="sidebar-header">
+                <div class="crest-seal small">
+                    <span class="crest-icon">🏛️</span>
+                </div>
+                <div class="sidebar-title-wrap">
+                    <h3 class="sidebar-title">Digital Campus</h3>
+                    <span class="sidebar-subtitle">MMCOE PORTAL</span>
+                </div>
+                <button type="button" id="mobileMenuCloseBtn" class="mobile-menu-close-btn" onclick="closeMobileMenu(event)" aria-label="Close Navigation Menu" title="Close Menu">
+                    ✕
+                </button>
+            </div>
+
+            <div class="sidebar-nav-container">
+                <div class="nav-section-label">MAIN NAVIGATION</div>
+
+                <nav class="navigation" aria-label="Portal Navigation">
+                    <button class="nav-btn active" data-page="home">
+                        <span class="nav-icon">⌂</span>
+                        <span class="nav-label">Dashboard Overview</span>
+                    </button>
+
+                    <button class="nav-btn" data-page="maps">
+                        <span class="nav-icon">⌖</span>
+                        <span class="nav-label">Campus Maps</span>
+                    </button>
+
+                    <button class="nav-btn" data-page="internships">
+                        <span class="nav-icon">↗</span>
+                        <span class="nav-label">InterX Opportunities</span>
+                    </button>
+
+                    <button class="nav-btn" data-page="community">
+                        <span class="nav-icon">👥</span>
+                        <span class="nav-label">Student Community</span>
+                    </button>
+                </nav>
+            </div>
+
+            <div class="sidebar-bottom">
+                <div class="user-card-mini">
+                    <div class="avatar" id="userAvatar">ST</div>
+                    <div class="user-details">
+                        <strong id="sidebarName">Student Name</strong>
+                        <span id="sidebarRole" class="badge-role badge-student">STUDENT</span>
+                    </div>
+                </div>
+
+                <button id="logoutBtn" class="btn btn-logout" title="Sign out of your session">
+                    <span>↪</span> Log Out
+                </button>
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT AREA -->
+        <main class="main-content">
+
+            <!-- Top Header Bar -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button type="button" id="mobileMenuBtn" class="mobile-menu-btn" onclick="openMobileMenu(event)" aria-label="Open Navigation Menu" aria-expanded="false" title="Menu">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </button>
+                    <div class="topbar-title-wrap">
+                        <span id="topbarPortalSubtitle" class="topbar-breadcrumb">MMCOE / STUDENT PROFILE PORTAL</span>
+                        <h2 class="topbar-title">Digital Campus Portal</h2>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <div class="user-meta">
+                        <span id="topbarRoleBadge" class="badge-role badge-student">STUDENT</span>
+                    </div>
+                </div>
+            </header>
+
+
+            <!-- ====================================================== -->
+            <!-- SUBPAGE: HOME DASHBOARD                                -->
+            <!-- ====================================================== -->
+            <section id="page-home" class="page active">
+
+                <!-- Institutional Welcome Banner -->
+                <div class="welcome-banner">
+                    <div class="banner-text">
+                        <span class="eyebrow-accent">CAMPUS OVERVIEW</span>
+                        <h1>Welcome, <span id="welcomeName">User</span></h1>
+                        <p id="welcomeSubtitle">
+                            Welcome to MMCOE Digital Campus.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- STUDENT & FACULTY SERVICES (COMMON TO BOTH ROLES) -->
+                <div class="section-header">
+                    <div>
+                        <span class="section-tag">CAMPUS ECOSYSTEM</span>
+                        <h2 class="section-title">Student & Faculty Services</h2>
+                    </div>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card" id="campusWayfindingCard" style="cursor: pointer;">
+                        <div class="service-icon-box red">⌖</div>
+                        <h3>Campus Wayfinding</h3>
+                        <p>Navigate lecture halls, computer labs, library, and departmental buildings across Karvenagar campus.</p>
+                        <a href="/navigator/" class="btn-link explore-btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
+                            Explore Maps <span>→</span>
+                        </a>
+                    </div>
+
+                    <div class="service-card" id="interxCareerHubCard" style="cursor: pointer;">
+                        <div class="service-icon-box dark-blue">↗</div>
+                        <h3>InterX Career Hub</h3>
+                        <p>Discover vetted engineering internships, industry placement drives, and national technical hackathons.</p>
+                        <a href="/interx/" class="btn-link explore-btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
+                            View Opportunities <span>→</span>
+                        </a>
+                    </div>
+
+                    <div class="service-card" id="studentCommunityCard" style="cursor: pointer;">
+                        <div class="service-icon-box teal">👥</div>
+                        <h3>Student Community</h3>
+                        <p>Connect with technical clubs, student forums, collaborative projects, and peer discussions.</p>
+                        <button class="btn-link explore-btn" data-go="community">
+                            Join Discussions <span>→</span>
+                        </button>
+                    </div>
+                </div>
+
+
+
+            </section>
+
+
+            <!-- ====================================================== -->
+            <!-- SUBPAGE: CAMPUS MAPS                                   -->
+            <!-- ====================================================== -->
+            <section id="page-maps" class="page">
+                <div class="page-heading">
+                    <span class="eyebrow-accent">CAMPUS SERVICES</span>
+                    <h1>Campus Maps</h1>
+                    <p>Navigate your campus with ease.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-card-header">
+                        <div class="service-icon-box orange">🗺️</div>
+                        <div>
+                            <h2>Campus Wayfinding</h2>
+                            <p>Explore campus buildings, laboratories, classrooms, and facilities.</p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 14px; font-size: 0.875rem; color: var(--text-muted);">
+                        Interactive 3D indoor wayfinding and multi-floor pathfinding system across MMCOE campus buildings and departments.
+                    </p>
+                    <div style="margin-top: 20px;">
+                        <a href="/navigator/" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; padding: 10px 20px; font-weight: 500;">
+                            <span>Open Campus Navigator</span> <span>→</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- ====================================================== -->
+            <!-- SUBPAGE: INTERX (CAREER & HACKATHONS)                  -->
+            <!-- ====================================================== -->
+            <section id="page-internships" class="page">
+                <div class="page-heading">
+                    <span class="eyebrow-accent">CAREER DEVELOPMENT</span>
+                    <h1>InterX — Internships & Hackathons</h1>
+                    <p>Discover corporate internships, training programs, and technical hackathons.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-card-header">
+                        <div class="service-icon-box dark-blue">↗</div>
+                        <div>
+                            <h2>InterX Opportunity Hub</h2>
+                            <p>Discover corporate internships, industry drives, and national technical hackathons.</p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 14px; font-size: 0.875rem; color: var(--text-muted);">
+                        Access vetted engineering internships, research drives, and national hackathons verified by MMCOE.
+                    </p>
+                    <div style="margin-top: 20px;">
+                        <a href="/interx/" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; padding: 10px 20px; font-weight: 500;">
+                            <span>Open InterX Career Hub</span> <span>→</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- ====================================================== -->
+            <!-- SUBPAGE: POSTS & DISCUSSIONS                           -->
+            <!-- ====================================================== -->
+            <section id="page-posts" class="page">
+                <div class="page-heading">
+                    <span class="eyebrow-accent">COLLABORATION</span>
+                    <h1>Posts & Discussions</h1>
+                    <p>Technical insights, project queries, and academic exchange.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-card-header">
+                        <div class="service-icon-box purple">💬</div>
+                        <div>
+                            <h2>Student & Faculty Discussions</h2>
+                            <p>Phase 5 will enable posting, commenting, and reactions tied to your central authenticated profile.</p>
+                        </div>
+                    </div>
+                    <div class="placeholder-notice">
+                        <strong>Ready for Phase 5 Integration:</strong> Posts will securely associate with <code>accounts.User</code> author foreign keys.
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- ====================================================== -->
+            <!-- SUBPAGE: COMMUNITY                                     -->
+            <!-- ====================================================== -->
+            <section id="page-community" class="page">
+                <div class="page-heading">
+                    <span class="eyebrow-accent">STUDENT NETWORK</span>
+                    <h1>Student Community Hub</h1>
+                    <p>Clubs, technical societies, and peer mentorship networks.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-card-header">
+                        <div class="service-icon-box teal">👥</div>
+                        <div>
+                            <h2>MMCOE Student Technical Clubs</h2>
+                            <p>Join ACM, CSI, IEEE, Robotics Club, and Cultural societies across the college.</p>
+                        </div>
+                    </div>
+                    <div class="placeholder-notice">
+                        <strong>Ecosystem Active:</strong> Collaborate on collegiate initiatives with verified student identities.
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+    </section>
+
+    <!-- Common Modular Authentication Scripts -->
+    <script src="/static/js/api.js?v=20261005_3"></script>
+    <script src="/static/js/auth.js?v=20261005_3"></script>
+    <script src="/static/script.js?v=20261006_mobilefix"></script>
+</body>
+
+</html>

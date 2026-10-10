@@ -9,7 +9,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 FRONTEND_DIR = BASE_DIR.parent
 
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-mmcoe-portal-dev-key-72648291038472910")
 
 # SECURITY: Controllable via environment variable (defaults to True locally)
 DEBUG = os.environ.get('DEBUG', 'True').lower() not in ('false', '0', 'f', 'no')
